@@ -1,0 +1,10 @@
+%h1.heading.text-center Reset your password
+%p.text-center
+  To be emailed a link to reset your password,
+  %br
+  please enter your email address.
+#reset-password.row
+  .col-12.col-sm-8.offset-sm-2.col-md-6.offset-md-3.col-lg-4.offset-lg-4
+    = form_for :password, url: passwords_path do |f|
+      = f.text_field :email, type: 'email', placeholder: "Email", class: "email-input form-control"
+      = f.submit "Reset password", class: "btn btn-primary btn-block"

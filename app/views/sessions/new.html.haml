@@ -1,0 +1,9 @@
+%h1.heading.text-center Sign in
+#sign-in.row
+  .col-12.col-sm-8.offset-sm-2.col-md-6.offset-md-3.col-lg-4.offset-lg-4
+    = form_for :session, url: session_path do |f|
+      = f.text_field :email, type: 'email', placeholder: "Email", class: "email-input form-control"
+      = f.password_field :password, placeholder: "Password", class: "password-input form-control"
+      = f.submit "Sign in", class: "btn btn-primary btn-block"
+      = link_to "Register here!", sign_up_path, class: "btn btn-sm btn-info btn-block"
+      = link_to "Forgot password?", new_password_path, class: "btn btn-sm btn-light btn-block"
