@@ -40,4 +40,17 @@ RSpec.describe List, type: :model do
       it { expect(subject.archived?).to be_truthy }
     end
   end
+
+  describe "associations" do
+    context "tasks" do
+      let(:task) { create(:task, list: subject) }
+
+      before do
+        subject.save && subject.reload
+        task
+      end
+
+      it { expect(subject.tasks).to include(task) }
+    end
+  end
 end

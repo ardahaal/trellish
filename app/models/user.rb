@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   include Clearance::User
-
   PASSWORD_REGEX = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/
+
+  has_many :assignments
+  has_many :tasks, through: :assignments, dependent: :destroy
 
   validates :name,      presence: true
   validates :email,     presence: true

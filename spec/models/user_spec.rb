@@ -30,4 +30,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "associations" do
+    context "assignments and tasks" do
+      let(:user) { create(:user, :with_assignments, number_of_tasks: 10) }
+
+      it { expect(subject).to be_valid }
+      it { expect(subject.tasks.count).to eq(10) }
+      it { expect(subject.assignments.count).to eq(10) }
+    end
+  end
 end
