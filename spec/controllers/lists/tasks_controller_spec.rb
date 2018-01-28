@@ -133,4 +133,80 @@ describe Lists::TasksController do
       end
     end
   end
+
+  describe "POST #assign" do
+    let!(:user)   { create(:user) }
+    let!(:task)   { create(:task) }
+    let(:params)  {
+                    {
+                      list_id: task.list.id,
+                      id: task.id,
+                      user_id: user.id
+                    }
+                  }
+
+    it { expect(task.assignments.count).to eq(0) }
+
+    context "when not signed in" do
+      before { post(:assign, params: params) }
+
+      it { expect(response).not_to be_success }
+      it { expect(response).to redirect_to(sign_in_path) }
+    end
+
+    context "when signed in" do
+      before { sign_in_as(user) }
+
+      context "with valid params" do
+        before do
+          post(:assign, params: params)
+          task.reload
+        end
+
+        it { expect(response).to redirect_to(root_path) }
+        it "should create assignment" do
+          expect(task.assignments.count).to eq(1)
+          expect(task.assignments.first.user).to eq(user)
+        end
+      end
+
+      context "with invalid params" do
+        context "with invalid List id" do
+          let(:params)  {
+                          {
+                            list_id: 0,
+                            id: task.id,
+                            user_id: user.id
+                          }
+                        }
+
+          it { expect{ post(:assign, params: params) }.to raise_error(ActiveRecord::RecordNotFound) }
+        end
+
+        context "with invalid Task id" do
+          let(:params)  {
+                          {
+                            list_id: task.list.id,
+                            id: 0,
+                            user_id: user.id
+                          }
+                        }
+
+          it { expect{ post(:assign, params: params) }.to raise_error(ActiveRecord::RecordNotFound) }
+        end
+
+        context "with invalid User id" do
+          let(:params)  {
+                          {
+                            list_id: task.list.id,
+                            id: task.id,
+                            user_id: 0
+                          }
+                        }
+
+          it { expect{ post(:assign, params: params) }.to raise_error(ActiveRecord::RecordNotFound) }
+        end
+      end
+    end
+  end
 end

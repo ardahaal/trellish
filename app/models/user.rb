@@ -13,4 +13,5 @@ class User < ApplicationRecord
                           message: "must include at least one lowercase letter, one uppercase letter, and one digit"
                         }
 
+  scope :without_assignment_for, -> (task) { where.not(id: task.users.map{|s|s.id}) }
 end

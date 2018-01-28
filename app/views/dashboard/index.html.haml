@@ -14,6 +14,15 @@
                 %li.list-group-item{class: ["task", (i.even? ? "even" : "odd")], data: {id: task.id}}
                   %h5= task.title
                   %p= task.description
+                  - if task.users.any?
+                    %p
+                      .small Assignees:
+                      - task.users.each do |user|
+                        %span.badge.badge-secondary= user.name
+                  %hr
+                  - if User.without_assignment_for(task).any?
+                    = form_for :task, url: assign_list_task_path(list, task), method: :post do |f|
+                      = f.select :user_id, options_for_select(User.without_assignment_for(task).collect{|u| [u.name, u.id]}), {include_blank: "Assign..."}, class: "assignee-input form-control form-control-sm"
                   = form_for task, url: list_task_path(list, task), method: :put do |f|
                     = f.select :list_id, options_for_select(List.without(list.id).active.collect{|l| [l.name, l.id]}), {include_blank: "Move to..."}, class: "list-input form-control form-control-sm"
             - else

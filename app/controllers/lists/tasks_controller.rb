@@ -22,4 +22,9 @@ class Lists::TasksController < ApplicationController
     result = facade.update_service.call
     redirect_to root_path
   end
+
+  def assign
+    result = facade.assign_service.call
+    redirect_to root_path
+  end
 end
