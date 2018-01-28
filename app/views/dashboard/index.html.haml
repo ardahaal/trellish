@@ -7,6 +7,7 @@
             = list.name.upcase
             %br
             = link_to "Add task", new_list_task_path(list), class: "badge badge-primary"
+            = link_to "Archive", archive_list_path(list), method: :post, data: {confirm: "Are you sure you want to archive \"#{list.name.upcase}\"?"}, class: "badge badge-danger"
           %ul.list-group.list-group-flush.tasks
             - if list.tasks.any?
               - list.tasks.each_with_index do |task, i|
