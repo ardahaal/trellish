@@ -1,0 +1,9 @@
+%h1.heading.text-center 
+  Create new task for
+  .text-primary= facade.list.name.upcase
+#new-task.row
+  .col-12.col-sm-8.offset-sm-2.col-md-6.offset-md-3.col-lg-4.offset-lg-4
+    = form_for @task, url: list_tasks_path(list_id: facade.list.id) do |f|
+      = f.text_field :title, placeholder: "Title", class: "title-input form-control"
+      = f.text_area :description, placeholder: "Describe your task here...", class: "description-input form-control"
+      = f.submit "Create", class: "btn btn-primary btn-block btn-submit"

@@ -20,9 +20,5 @@ class List
     def list
       @list ||= ::List.new.tap { |l| l.attributes = attributes }
     end
-
-    def voucher
-      @voucher ||= product.vouchers.find_by(code: attributes[:booking][:voucher])
-    end
   end
 end
