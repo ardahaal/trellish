@@ -96,4 +96,41 @@ describe Lists::TasksController do
       end
     end
   end
+
+  describe "PUT #update" do
+    let!(:task)   { create(:task) }
+    let(:params)  {
+                    {
+                      list_id: task.list.id,
+                      id: task.id,
+                      task: {
+                        title:        "New title",
+                        description:  "New description",
+                        list_id:      list.id
+                      }
+                    }
+                  }
+
+    context "when not signed in" do
+      before { post(:update, params: params) }
+
+      it { expect(response).not_to be_success }
+      it { expect(response).to redirect_to(sign_in_path) }
+    end
+
+    context "when signed in" do
+      before do
+        sign_in_as(user)
+        post(:update, params: params)
+        task.reload
+      end
+
+      it { expect(response).to redirect_to(root_path) }
+      it "should update task" do
+        expect(task.title).to eq(params[:task][:title])
+        expect(task.description).to eq(params[:task][:description])
+        expect(task.list).to eq(list)
+      end
+    end
+  end
 end

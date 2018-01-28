@@ -17,4 +17,9 @@ class Lists::TasksController < ApplicationController
       render :new
     end
   end
+
+  def update
+    result = facade.update_service.call
+    redirect_to root_path
+  end
 end

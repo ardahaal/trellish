@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :lists, only: [:new, :create] do
-    resources :tasks, controller: 'lists/tasks', only: [:new, :create]
+    resources :tasks, controller: 'lists/tasks', only: [:new, :create, :update]
 
     member do
       post :archive

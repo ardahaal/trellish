@@ -14,5 +14,7 @@
                 %li.list-group-item{class: ["task", (i.even? ? "even" : "odd")], data: {id: task.id}}
                   %h5= task.title
                   %p= task.description
+                  = form_for task, url: list_task_path(list, task), method: :put do |f|
+                    = f.select :list_id, options_for_select(List.without(list.id).active.collect{|l| [l.name, l.id]}), {include_blank: "Move to..."}, class: "list-input form-control form-control-sm"
             - else
               .card-body No tasks yet

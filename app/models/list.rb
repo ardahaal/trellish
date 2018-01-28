@@ -7,4 +7,6 @@ class List < ApplicationRecord
 
   validates :status, presence: true, inclusion: { in: STATUSES }
   validates :name,   presence: true, length: { maximum: 100 }
+
+  scope :without, -> (id) { where.not(id: id) }
 end
