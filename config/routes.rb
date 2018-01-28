@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :users,     controller: 'users',               only: :create do
     resource :password, controller: 'clearance/passwords', only: [:create, :edit, :update]
   end
+
+  resources :lists, only: [:new, :create] do
+    member do
+      post :archive
+    end
+  end
 end

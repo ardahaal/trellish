@@ -13,11 +13,12 @@
         %button.navbar-toggler.collapsed{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", data: {target: "#navbarCollapse", toggle: "collapse"}, type: "button"}
           %span.navbar-toggler-icon
         #navbarCollapse.navbar-collapse.collapse
-          %ul.navbar-nav.mr-auto
-            - if current_user
+          - if current_user
+            %ul.navbar-nav.mr-auto
+              %li.nav-item
+                = link_to "New list", new_list_path, class: "nav-link"
               %li.nav-item
                 = link_to "Logout", sign_out_path, method: :delete, class: "nav-link"
-          - if current_user
             %form.form-inline.mt-2.mt-md-0
               %input.form-control.mr-sm-2{"aria-label" => "Search", placeholder: "Search", type: "text"}
               %button.btn.btn-outline-primary.my-2.my-sm-0{type: "submit"} Search

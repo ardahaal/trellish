@@ -38,12 +38,14 @@ gem 'clearance', '~> 1.16'
 gem 'haml', '~> 5.0.4'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'decent_exposure', '~> 3.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.7'
   gem 'guard-rspec', '~> 4.7.3'
+  gem 'rails-controller-testing'
   gem 'ffaker', '~> 2.7'
 end
 
