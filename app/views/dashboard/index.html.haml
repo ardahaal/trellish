@@ -1,0 +1,17 @@
+#dashboard.row
+  .col-12.col-sm-12
+    .lists
+      - facade.lists.each do |list|
+        .card.list{data: {id: list.id}}
+          .card-header
+            = list.name.upcase
+            %br
+            = link_to "Add task", new_list_task_path(list), class: "badge badge-primary"
+          %ul.list-group.list-group-flush.tasks
+            - if list.tasks.any?
+              - list.tasks.each_with_index do |task, i|
+                %li.list-group-item{class: ["task", (i.even? ? "even" : "odd")], data: {id: task.id}}
+                  %h5= task.title
+                  %p= task.description
+            - else
+              .card-body No tasks yet

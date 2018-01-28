@@ -1,2 +1,20 @@
 #new-list
   margin-top: 60px
+
+#dashboard
+  .lists
+    padding: 15px 0
+    @media (min-width: 576px)
+      height: calc(100vh - 120px)
+      display: flex
+      flex-wrap: nowrap
+      overflow-x: auto
+      -webkit-overflow-scrolling: touch
+      -ms-overflow-style: -ms-autohiding-scrollbar
+    .list
+      margin-right: 15px
+      margin-bottom: 15px
+      @media (min-width: 576px)
+        width: 25%
+        margin-bottom: 0
+        flex: 0 0 auto

@@ -8,3 +8,21 @@
     .description-input
       border-top-left-radius: 0
       border-top-right-radius: 0
+
+.card > .list-group:last-child .list-group-item:last-child
+  border-bottom-right-radius: 0
+  border-bottom-left-radius: 0
+
+.list-group-flush:last-child .list-group-item:last-child
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125)
+
+.tasks
+  .task
+    border-radius: 0
+    &.even
+      background-color: rgba(23, 162, 184, 0.2)
+    &.odd
+      background-color: rgba(23, 162, 184, 0.3)
+    p
+      margin-bottom: 0
+      color: #666
