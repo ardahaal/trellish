@@ -23,4 +23,6 @@ Rails.application.routes.draw do
       post :archive
     end
   end
+
+  post '/search' => 'dashboard#index'
 end

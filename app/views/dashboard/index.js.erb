@@ -1,0 +1,5 @@
+$("#lists").html("<%= escape_javascript(render(partial: "lists/collection")) %>");
+
+$("li.task").each(function() {
+  return $(this).taskHandler();
+});

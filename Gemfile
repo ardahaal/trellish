@@ -38,6 +38,7 @@ gem 'clearance', '~> 1.16'
 gem 'haml', '~> 5.0.4'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'decent_exposure', '~> 3.0.0'
 
 group :development, :test do
