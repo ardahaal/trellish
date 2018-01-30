@@ -1,4 +1,10 @@
 class UsersController < Clearance::UsersController
+  def create
+    super.tap do |block|
+      flash[:error] = @user.errors.to_a.join(". ") if @user.errors.any?
+    end
+  end
+
   private
 
   def user_from_params

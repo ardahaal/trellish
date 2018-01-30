@@ -9,6 +9,13 @@ $.widget "trellish.taskHandler",
         $(e.target).closest('form').submit()
 
 $ ->
+  $(document).on "click", ".flash button", (e) ->
+    $("#flashes").fadeOut()
+
+  setTimeout ->
+    $("#flashes").fadeOut()
+  , 3500
+
   $("li.task").each ->
     $(this).taskHandler()
 

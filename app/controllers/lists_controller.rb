@@ -11,15 +11,16 @@ class ListsController < ApplicationController
     result = facade.create_service.call
 
     if result.success?
-      redirect_to root_path
+      redirect_to(root_path, flash: { success: "List created" })
     else
       @list = result.data.list
-      render :new
+      flash[:error] = @list.errors.to_a.join(". ")
+      render(:new)
     end
   end
 
   def archive
     facade.list.archived!
-    redirect_to root_path
+    redirect_to(root_path, flash: { success: "List archived" })
   end
 end

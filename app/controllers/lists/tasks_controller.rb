@@ -11,20 +11,22 @@ class Lists::TasksController < ApplicationController
     result = facade.create_service.call
 
     if result.success?
-      redirect_to root_path
+      redirect_to(root_path, flash: { success: "Task created" })
     else
       @task = result.data.task
-      render :new
+      flash[:error] = @task.errors.to_a.join(". ")
+      render(:new)
     end
   end
 
   def update
     result = facade.update_service.call
-    redirect_to root_path
+    flash = result.success? ? { success: "Task updated" } : { error: result.data.task.errors.to_a.join(". ") }
+    redirect_to(root_path, flash: flash)
   end
 
   def assign
     result = facade.assign_service.call
-    redirect_to root_path
+    redirect_to(root_path, flash: { success: "Task assigned" })
   end
 end
