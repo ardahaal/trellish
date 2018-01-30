@@ -141,7 +141,7 @@ describe Lists::TasksController do
                     {
                       list_id: task.list.id,
                       id: task.id,
-                      user_id: user.id
+                      task: {user_id: user.id}
                     }
                   }
 
@@ -176,7 +176,7 @@ describe Lists::TasksController do
                           {
                             list_id: 0,
                             id: task.id,
-                            user_id: user.id
+                            task: {user_id: user.id}
                           }
                         }
 
@@ -188,7 +188,7 @@ describe Lists::TasksController do
                           {
                             list_id: task.list.id,
                             id: 0,
-                            user_id: user.id
+                            task: {user_id: user.id}
                           }
                         }
 
@@ -200,7 +200,7 @@ describe Lists::TasksController do
                           {
                             list_id: task.list.id,
                             id: task.id,
-                            user_id: 0
+                            task: {user_id: 0}
                           }
                         }
 
